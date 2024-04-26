@@ -8,12 +8,16 @@ export async function DELETE(req, { params }) {
     await dbConnect();
 
     await todoModel.findByIdAndDelete(id);
+    
 
     //send a json response with a success flag
     return NextResponse.json(
       {
         success: true,
         message: "Todo deleted successfully",
+        data:{
+          id:id,
+        }
       },
       {
         status: 200,

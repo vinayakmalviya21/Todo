@@ -30,13 +30,13 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="container mx-auto mt-[10rem] w-fit">
+    <div className="container mx-auto mt-[10rem] w-fit text-black">
       <h1 className="text-3xl font-bold mb-4 flex justify-center">Login</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 border-gray-400 border-2 rounded-lg p-5 bg-slate-300">
         <div>
           <label
             htmlFor="email"
-            className="block text-lg font-bold text-gray-700"
+            className="block text-lg font-bold"
           >
             Email
           </label>
@@ -53,7 +53,7 @@ export default function LoginForm() {
         <div>
           <label
             htmlFor="password"
-            className="block text-lg font-bold text-gray-700"
+            className="block text-lg font-bold"
           >
             Password
           </label>
@@ -78,7 +78,7 @@ export default function LoginForm() {
           </div>
 
           <div className="flex justify-center">
-            <p className="text-md text-gray-400 font-semibold">Welcome! Ready to get started?</p>
+            <p className="text-md font-semibold">Welcome! Ready to get started?</p>
           <Link href="/">
             <p
               type="button"

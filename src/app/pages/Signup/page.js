@@ -30,13 +30,13 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="container mx-auto mt-10 w-fit">
-      <h1 className="text-3xl font-bold mb-4 flex justify-center">SignUp</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="container mx-auto w-fit text-black">
+      <h1 className="text-3xl font-bold mb-4 flex justify-center">Signup</h1>
+      <form onSubmit={handleSubmit} className="space-y-4 border-gray-400 border-2 rounded-lg p-5 bg-slate-300">
         <div>
           <label
             htmlFor="name"
-            className="block text-lg font-bold text-gray-700"
+            className="block text-lg font-bold"
           >
             Name
           </label>
@@ -53,7 +53,7 @@ export default function SignUpForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-lg font-bold text-gray-700"
+            className="block text-lg font-bold"
           >
             Email
           </label>
@@ -70,7 +70,7 @@ export default function SignUpForm() {
         <div>
           <label
             htmlFor="password"
-            className="block text-lg font-bold text-gray-700"
+            className="block text-lg font-bold"
           >
             Password
           </label>
@@ -95,7 +95,7 @@ export default function SignUpForm() {
           </div>
 
           <div className="flex justify-center">
-            <p className="text-md text-gray-400 font-semibold">Already have an account?</p>
+            <p className="text-md font-semibold">Already have an account?</p>
           <Link href="/pages/Login">
             <p
               type="button"
