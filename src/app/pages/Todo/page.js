@@ -5,8 +5,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Navbar from '../../components/Navbar';
 
+
 export default function Todo() {
-  const [Uid, setUid] = useState(() => localStorage.getItem("Uid") || null);
+  const [Uid, setUid] = useState(() => window.localStorage.getItem("Uid") || null);
   const [todo, setTodo] = useState([]);
   const router = useRouter();
   const [title, setTitle] = useState('');
