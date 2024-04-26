@@ -1,13 +1,14 @@
-"use client";
+"use client"
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Navbar from '../../components/Navbar';
+import {useCookies} from 'next-client-cookies'
 
 
 export default function Todo() {
-  const [Uid, setUid] = useState(() => window.localStorage.getItem("Uid") || null);
+  const [Uid, setUid] = useState();
   const [todo, setTodo] = useState([]);
   const router = useRouter();
   const [title, setTitle] = useState('');
@@ -16,27 +17,36 @@ export default function Todo() {
 
   const [selectedTodo,setSelectedTodo] = useState();
 
-  const getTodo = async () => {
-    const res = await axios.get("/api/todo/get/" + Uid);
+  const getTodo = async (Id) => {
+    const res = await axios.get("/api/todo/get/" + Id);
     console.log(res.data);
     setTodo(res.data.data);
   };
 
+  const cookies = useCookies();
+
+
   useEffect(() => {
-    if (!Uid) {
-      return router.push("/pages/Login");
-    }
+    
+    //   const NewUid = cookies.get('my-cookie');
+    //   setUid(NewUid);
+    //   console.log(Uid);
 
-    getTodo();
+    // if (!Uid) {
+    //   return router.push("/pages/Login");
+    // }
 
-  }, [Uid]);
+    const Id = cookies.get("Uid");
+
+    getTodo(Id);
+
+  }, []);
 
 
   const createTodo = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/todo/create', {
-        Uid,
         title,
         description,
         status,
@@ -102,7 +112,7 @@ export default function Todo() {
   };
 
     const handleLogout = () => {
-        localStorage.removeItem(Uid);
+        document.cookie = "Uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         console.log("Logout");
         router.push("/");
     };

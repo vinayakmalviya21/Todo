@@ -1,9 +1,12 @@
 'use client'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Link from 'next/link';
 import axios from "axios";
+import {useCookies} from 'next-client-cookies'
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const[Uid,setUid] = useState();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,13 +20,28 @@ export default function LoginForm() {
     }));
   };
 
+  const cookies = useCookies();
+  const router = useRouter();
+
+  useEffect(() => {
+    
+    const NewUid = cookies.get('my-cookie');
+    setUid(NewUid);
+    console.log(Uid);
+
+    if(Uid != null){
+      router.push("/pages/Todo")
+    }
+
+}, [Uid]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/login", formData);
       console.log(response.data);
-      localStorage.setItem("Uid", response.data.userId);
-      window.location = "/pages/Todo";
+      // localStorage.setItem("Uid", response.data.userId);
+      router.push("/pages/Todo")
     } catch (error) {
       console.error(error);
     }

@@ -4,7 +4,11 @@ import dbConnect from "@/app/config/dbConnect";
 
 export async function POST(req) {
     const body = await req.json();
-    const { title, description, status,Uid } = body;
+    const { title, description, status } = body;
+
+    const Uid = req.cookies.get('Uid').value;
+
+    console.log("Cookies are: ",cookies);
 
   try {
 
