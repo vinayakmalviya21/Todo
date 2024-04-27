@@ -3,7 +3,6 @@ import todoModel from "@/app/models/todo.model";
 import dbConnect from "@/app/config/dbConnect";
 
 export async function GET(req, { params }) {
-
   const { Uid } = params;
   console.log(Uid);
 
@@ -21,7 +20,6 @@ export async function GET(req, { params }) {
         }
       );
 
-    // fetch all todo items from database
     const todos = await todoModel.find({ Uid });
 
     return NextResponse.json(
@@ -35,8 +33,6 @@ export async function GET(req, { params }) {
       }
     );
   } catch (err) {
-    // console.error(err);
-    // console.log(err);
     return NextResponse.json(
       {
         success: false,

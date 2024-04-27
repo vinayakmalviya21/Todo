@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -18,12 +19,14 @@ export default function SignUpForm() {
     }));
   };
 
+  
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/signup", formData);
-      console.log(response.data);
-      window.location = "/pages/Login";
+      router.push("/pages/Login");
     } catch (error) {
       console.error(error);
     }
